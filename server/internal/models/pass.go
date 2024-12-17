@@ -17,7 +17,6 @@ type Pass struct {
 }
 
 type CreatePass struct {
-	ID       int    `json:"id" db:"id" example:"1"`
 	Name     string `json:"name" db:"name" example:"Анна"`
 	Phone    string `json:"phone" db:"phone" example:"+79164043522"`
 	Type     string `json:"type" db:"type" example:"Персональный"`
