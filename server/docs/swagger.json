@@ -6,7 +6,378 @@
         "version": "1.0"
     },
     "basePath": "/",
-    "paths": {},
+    "paths": {
+        "/training": {
+            "get": {
+                "description": "Получение списка всех существующих тренировок из базы данных",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "training"
+                ],
+                "summary": "Получение всех тренировок",
+                "responses": {
+                    "200": {
+                        "description": "Список всех тренировок",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Training"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера",
+                        "schema": {
+                            "$ref": "#/definitions/models.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Обновление данных тренировки с проверкой на существование записи в базе данных",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "training"
+                ],
+                "summary": "Обновление существующей тренировки",
+                "parameters": [
+                    {
+                        "description": "Данные для обновления тренировки",
+                        "name": "training",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.UpdateTraining"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Успешное обновление тренировки",
+                        "schema": {
+                            "$ref": "#/definitions/models.Training"
+                        }
+                    },
+                    "400": {
+                        "description": "Некорректные данные запроса",
+                        "schema": {
+                            "$ref": "#/definitions/models.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Тренировка не найдена",
+                        "schema": {
+                            "$ref": "#/definitions/models.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера",
+                        "schema": {
+                            "$ref": "#/definitions/models.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Добавление новой записи о тренировке в базу данных",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "training"
+                ],
+                "summary": "Создание новой тренировки",
+                "parameters": [
+                    {
+                        "description": "Данные для создания тренировки",
+                        "name": "training",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CreateTraining"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Успешное создание тренировки",
+                        "schema": {
+                            "$ref": "#/definitions/models.Training"
+                        }
+                    },
+                    "400": {
+                        "description": "Некорректные данные запроса",
+                        "schema": {
+                            "$ref": "#/definitions/models.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера",
+                        "schema": {
+                            "$ref": "#/definitions/models.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/training/id/{id}": {
+            "get": {
+                "description": "Получение информации о тренировке на основе переданного идентификатора",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "training"
+                ],
+                "summary": "Получение тренировки по ID",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "ID тренировки",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Информация о тренировке",
+                        "schema": {
+                            "$ref": "#/definitions/models.Training"
+                        }
+                    },
+                    "400": {
+                        "description": "Некорректный идентификатор тренировки",
+                        "schema": {
+                            "$ref": "#/definitions/models.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера",
+                        "schema": {
+                            "$ref": "#/definitions/models.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Удаление существующей записи тренировки по её идентификатору",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "training"
+                ],
+                "summary": "Удаление тренировки",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "ID тренировки",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Успешное удаление тренировки",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Некорректный идентификатор тренировки",
+                        "schema": {
+                            "$ref": "#/definitions/models.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера",
+                        "schema": {
+                            "$ref": "#/definitions/models.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/training/id/{id}/cancel": {
+            "put": {
+                "description": "Обновление статуса тренировки на \"отменено\"",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "training"
+                ],
+                "summary": "Отмена тренировки",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "ID тренировки",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Тренировка успешно отменена",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Некорректный идентификатор тренировки",
+                        "schema": {
+                            "$ref": "#/definitions/models.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера",
+                        "schema": {
+                            "$ref": "#/definitions/models.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/training/id/{id}/confirm": {
+            "put": {
+                "description": "Обновление статуса тренировки на \"подтверждено\"",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "training"
+                ],
+                "summary": "Подтверждение тренировки",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "ID тренировки",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Тренировка успешно подтверждена",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Некорректный идентификатор тренировки",
+                        "schema": {
+                            "$ref": "#/definitions/models.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера",
+                        "schema": {
+                            "$ref": "#/definitions/models.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "models.CreateTraining": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "example": "Анна"
+                },
+                "phone": {
+                    "type": "string",
+                    "example": "+79164043522"
+                }
+            }
+        },
+        "models.ErrorResponse": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Training": {
+            "type": "object",
+            "properties": {
+                "confirmation": {
+                    "type": "string",
+                    "example": "0"
+                },
+                "id": {
+                    "type": "integer",
+                    "example": 137
+                },
+                "name": {
+                    "type": "string",
+                    "example": "Анна"
+                },
+                "phone": {
+                    "type": "string",
+                    "example": "+79164043522"
+                }
+            }
+        },
+        "models.UpdateTraining": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "example": 137
+                },
+                "name": {
+                    "type": "string",
+                    "example": "Павел"
+                },
+                "phone": {
+                    "type": "string",
+                    "example": "+79164041337"
+                }
+            }
+        }
+    },
     "securityDefinitions": {
         "ApiKeyAuth": {
             "type": "apiKey",

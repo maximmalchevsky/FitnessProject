@@ -29,13 +29,12 @@ func NewDatabase() (*sqlx.DB, error) {
 	}
 
 	fmt.Println("Successfully connected to database. Creating tables")
-	//CreateTable(db)
+	CreateTable(db)
 
 	return db, nil
 }
 
-//func CreateTable(db *sqlx.DB) {
-//	db.MustExec(createUserTable)
-//	db.MustExec(createCatTable)
-//	db.MustExec(createFavoritesTable)
-//}
+func CreateTable(db *sqlx.DB) {
+	db.MustExec(createTableTrainings)
+	db.MustExec(createTablePasses)
+}

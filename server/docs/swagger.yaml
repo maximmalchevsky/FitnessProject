@@ -1,9 +1,256 @@
 basePath: /
+definitions:
+  models.CreateTraining:
+    properties:
+      name:
+        example: Анна
+        type: string
+      phone:
+        example: "+79164043522"
+        type: string
+    type: object
+  models.ErrorResponse:
+    properties:
+      error:
+        type: string
+    type: object
+  models.Training:
+    properties:
+      confirmation:
+        example: "0"
+        type: string
+      id:
+        example: 137
+        type: integer
+      name:
+        example: Анна
+        type: string
+      phone:
+        example: "+79164043522"
+        type: string
+    type: object
+  models.UpdateTraining:
+    properties:
+      id:
+        example: 137
+        type: integer
+      name:
+        example: Павел
+        type: string
+      phone:
+        example: "+79164041337"
+        type: string
+    type: object
 info:
   contact: {}
   title: Fitness API
   version: "1.0"
-paths: {}
+paths:
+  /training:
+    get:
+      consumes:
+      - application/json
+      description: Получение списка всех существующих тренировок из базы данных
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Список всех тренировок
+          schema:
+            items:
+              $ref: '#/definitions/models.Training'
+            type: array
+        "500":
+          description: Внутренняя ошибка сервера
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: Получение всех тренировок
+      tags:
+      - training
+    post:
+      consumes:
+      - application/json
+      description: Добавление новой записи о тренировке в базу данных
+      parameters:
+      - description: Данные для создания тренировки
+        in: body
+        name: training
+        required: true
+        schema:
+          $ref: '#/definitions/models.CreateTraining'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Успешное создание тренировки
+          schema:
+            $ref: '#/definitions/models.Training'
+        "400":
+          description: Некорректные данные запроса
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+        "500":
+          description: Внутренняя ошибка сервера
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: Создание новой тренировки
+      tags:
+      - training
+    put:
+      consumes:
+      - application/json
+      description: Обновление данных тренировки с проверкой на существование записи
+        в базе данных
+      parameters:
+      - description: Данные для обновления тренировки
+        in: body
+        name: training
+        required: true
+        schema:
+          $ref: '#/definitions/models.UpdateTraining'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Успешное обновление тренировки
+          schema:
+            $ref: '#/definitions/models.Training'
+        "400":
+          description: Некорректные данные запроса
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+        "404":
+          description: Тренировка не найдена
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+        "500":
+          description: Внутренняя ошибка сервера
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: Обновление существующей тренировки
+      tags:
+      - training
+  /training/id/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Удаление существующей записи тренировки по её идентификатору
+      parameters:
+      - description: ID тренировки
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Успешное удаление тренировки
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Некорректный идентификатор тренировки
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+        "500":
+          description: Внутренняя ошибка сервера
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: Удаление тренировки
+      tags:
+      - training
+    get:
+      consumes:
+      - application/json
+      description: Получение информации о тренировке на основе переданного идентификатора
+      parameters:
+      - description: ID тренировки
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Информация о тренировке
+          schema:
+            $ref: '#/definitions/models.Training'
+        "400":
+          description: Некорректный идентификатор тренировки
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+        "500":
+          description: Внутренняя ошибка сервера
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: Получение тренировки по ID
+      tags:
+      - training
+  /training/id/{id}/cancel:
+    put:
+      consumes:
+      - application/json
+      description: Обновление статуса тренировки на "отменено"
+      parameters:
+      - description: ID тренировки
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Тренировка успешно отменена
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Некорректный идентификатор тренировки
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+        "500":
+          description: Внутренняя ошибка сервера
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: Отмена тренировки
+      tags:
+      - training
+  /training/id/{id}/confirm:
+    put:
+      consumes:
+      - application/json
+      description: Обновление статуса тренировки на "подтверждено"
+      parameters:
+      - description: ID тренировки
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Тренировка успешно подтверждена
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Некорректный идентификатор тренировки
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+        "500":
+          description: Внутренняя ошибка сервера
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: Подтверждение тренировки
+      tags:
+      - training
 securityDefinitions:
   ApiKeyAuth:
     in: header

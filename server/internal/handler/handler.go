@@ -36,5 +36,13 @@ func (h *Handler) Router() *fiber.App {
 		return c.Status(fiber.StatusOK).SendString("healthy")
 	})
 
+	f.Get("/training/id/:id", h.TrainingGetByID)
+	f.Get("/training", h.TrainingGetAll)
+	f.Post("/training", h.TrainingCreate)
+	f.Put("/training", h.TrainingUpdate)
+	f.Delete("/training/id/:id", h.TrainingDelete)
+	f.Put("/training/id/:id/confirm", h.ConfirmTraining)
+	f.Put("/training/id/:id/cancel", h.CancelTraining)
+
 	return f
 }
