@@ -1,0 +1,227 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: "Montserrat", sans-serif;
+    background-size: cover;
+    color: #f9f9f9;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: #f9f9f9; 
+    width: 100%;
+    top: 0;
+}
+
+header .logo {
+    font-size: 30px;
+    font-weight: bold;
+    color: #ffda0a;
+    text-decoration: none;
+}
+
+header nav {
+    display: flex;
+    gap: 40px;
+}
+
+header nav a {
+    text-decoration: none;
+    color: black;
+    font-size: 15px;
+    transition: color 0.3s;
+}
+
+header nav a:hover {
+    color: #ffda0a;
+}
+
+header .phone {
+    font-size: 18px;
+    color: #000;
+}
+
+.abonements-section {
+    background-color: #f9f9f9;
+    padding: 100px 20px;
+    text-align: center;
+}
+
+.abonements-section h1 {
+    font-size: 50px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #000;
+}
+
+.abonements-section p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 100px;
+}
+
+.abonements-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.abonement-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 50px;
+    flex: 1 1 calc(30% - 40px);
+    max-width: 350px;
+    text-align: center;
+}
+
+.abonement-card h2 {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 30px;
+    color: #000;
+}
+
+.abonement-card .price {
+    font-size: 40px;
+    font-weight: 5500;
+    margin-bottom: 40px;
+    color: #000;
+}
+
+.abonement-card .options {
+    list-style: none;
+    padding: 0;
+    margin: 20 20 20px;
+    color: #666;
+    font-size: 14px;
+}
+
+.abonement-card .options li {
+    margin-bottom: 25px;
+}
+
+.abonement-card .options-desc {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.abonement-card button {
+    background-color: #f1c40f;
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 30px;
+    margin-bottom: 0px;
+    font-size: 15px;
+    font-weight: 550;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.abonement-card button:hover {
+    background-color: #d4a900;
+}
+
+.footer {
+    background-color: #f7f7f7;
+    color: rgb(45, 45, 45); 
+    padding: 7rem 1rem;
+    font-size: 1rem;
+}
+
+.footer__container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer__about,
+.footer__links,
+.footer__contacts {
+    flex: 1 1 30%; 
+    min-width: 250px;
+}
+
+footer .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+    text-decoration: none;
+    margin-bottom: 1rem;
+}
+
+
+
+.footer__description {
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.footer__heading {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    color: rgb(45, 45, 45); 
+}
+
+.footer__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer__link {
+    color: rgb(45, 45, 45);
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.footer__link:hover {
+    color: #ffda0a; 
+}
+
+.footer__contacts p {
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.footer__socials {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.footer__social img {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease;
+}
+
+.footer__social:hover img {
+    transform: scale(1.1);
+}
+
+.footer__bottom {
+    margin-top: 6rem;
+    text-align: center;
+    font-size: 0.8rem;
+    border-top: 1px solid #555; 
+    padding-top: 1rem;
+}
+
+

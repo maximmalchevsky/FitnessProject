@@ -1,0 +1,316 @@
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: "Montserrat", sans-serif;
+        background: url('background-image.jpg') no-repeat center center fixed;
+        background-size: cover;
+        color: white;
+    }
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        background: none; 
+        width: 100%;
+        top: 0;
+    }
+
+    header .logo {
+        font-size: 30px;
+        font-weight: bold;
+        color: #ffda0a;
+        text-decoration: none;
+    }
+
+    header nav {
+        display: flex;
+        gap: 50px;
+    }
+
+    header nav a {
+        text-decoration: none;
+        color: white;
+        font-size: 15px;
+        transition: color 0.3s;
+    }
+
+    header nav a:hover {
+        color: #ffda0a;
+    }
+
+    header .phone {
+        font-size: 18px;
+    }
+
+    .hero {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .hero h1 {
+        font-size: 64px;
+        margin-bottom: 20px;
+    }
+
+    .hero p {
+        font-size: 24px;
+        margin-bottom: 40px;
+    }
+
+    .hero .cta-button {
+        font-size: 20px;
+        color: white;
+        border: 3px solid #ffda0a;
+        padding: 10px 30px;
+        text-decoration: none;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .hero .cta-button:hover {
+        background-color: #ffda0a;
+        color: black;
+    }
+
+    .info-block {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: white;
+        color: black;
+        padding: 40px;
+        height: 100vh;
+    }
+
+    .info-block img {
+        max-width: 40%;
+        height: auto;
+    }
+
+    .info-block .content {
+        max-width: 50%;
+        padding: 60px;
+        text-align: center;
+    }
+
+    .info-block .content h2 {
+        font-size: 36px;
+        margin-bottom: 20px;
+    }
+
+    .info-block .content p {
+        font-size: 18px;
+        line-height: 1.6;
+    }
+    .programs {
+        background: #f7f7f7;
+        padding: 100px;
+        text-align: center;
+    }
+
+    .programs h2 {
+        font-size: 36px;
+        color: black;
+        margin-bottom: 20px;
+    }
+
+    .programs p {
+        font-size: 23px;
+        color: black;
+        margin-bottom: 100px;
+    }
+
+    .programs .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        justify-items: center;
+    }
+
+    .programs .program {
+        text-align: center;
+        padding: 30px;
+    }
+
+    .programs .program img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin-bottom: 20px;
+    }
+
+    .programs .program h3 {
+        font-size: 20px;
+        font-weight: bold;
+        color: black;
+        margin-bottom: 30px;
+    }
+
+    .programs .program p {
+        font-size: 16px;
+        color: black;
+    }
+
+    .signup {
+        background: white;
+        padding: 100px;
+        text-align: center;
+    }
+
+    .signup h2 {
+        font-size: 36px;
+        color: black;
+        margin-bottom: 10px;
+    }
+
+    .signup p {
+        font-size: 18px;
+        color: gray;
+        margin-bottom: 50px;
+    }
+
+    .signup .form {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .signup .form input {
+        height: 60px;
+        padding: 0 10px;
+        border: none;
+        background: #f7f7f7;
+        font-size: 16px;
+        width: 350px;
+    }
+
+    .signup .form input::placeholder {
+        color: gray;
+    }
+
+    .signup .form button {
+        height: 60px;
+        padding: 0 20px;
+        background: #ffda0a;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: bold;
+        color: black;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .signup .form button:hover {
+        background-color: #d4a900;
+    }
+
+    .signup .note {
+        margin-top: 20px;
+        font-size: 14px;
+        color: gray;
+    }
+
+    .footer {
+        background-color: #f7f7f7;
+        color: rgb(45, 45, 45); 
+        padding: 7rem 1rem;
+        font-size: 1rem;
+    }
+    
+    .footer__container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    .footer__about,
+    .footer__links,
+    .footer__contacts {
+        flex: 1 1 30%; 
+        min-width: 250px;
+    }
+
+    footer .logo {
+        font-size: 24px;
+        font-weight: bold;
+        color: black;
+        text-decoration: none;
+        margin-bottom: 1rem;
+    }
+    
+    
+    
+    .footer__description {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+    
+    .footer__heading {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+        font-weight: bold;
+        color: rgb(45, 45, 45); 
+    }
+    
+    .footer__list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .footer__link {
+        color: rgb(45, 45, 45);
+        text-decoration: none;
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+    
+    .footer__link:hover {
+        color: #ffda0a; 
+    }
+    
+    .footer__contacts p {
+        margin-bottom: 0.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .footer__socials {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+    
+    .footer__social img {
+        width: 24px;
+        height: 24px;
+        transition: transform 0.3s ease;
+    }
+    
+    .footer__social:hover img {
+        transform: scale(1.1);
+    }
+    
+    .footer__bottom {
+        margin-top: 6rem;
+        text-align: center;
+        font-size: 0.8rem;
+        border-top: 1px solid #555; 
+        padding-top: 1rem;
+    }
+    
