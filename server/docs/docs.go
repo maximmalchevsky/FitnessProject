@@ -15,6 +15,171 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/pass": {
+            "get": {
+                "description": "Получение списка всех доступных абонементов в системе",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "pass"
+                ],
+                "summary": "Получение списка всех абонементов",
+                "responses": {
+                    "200": {
+                        "description": "Список всех абонементов",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Pass"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера",
+                        "schema": {
+                            "$ref": "#/definitions/models.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Создание нового абонемента с указанием имени, телефона, типа и продолжительности (в месяцах).",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "pass"
+                ],
+                "summary": "Создание нового абонемента",
+                "parameters": [
+                    {
+                        "description": "Данные абонемента",
+                        "name": "pass",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CreatePass"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Успешное создание абонемента",
+                        "schema": {
+                            "$ref": "#/definitions/models.Pass"
+                        }
+                    },
+                    "400": {
+                        "description": "Некорректный запрос",
+                        "schema": {
+                            "$ref": "#/definitions/models.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера",
+                        "schema": {
+                            "$ref": "#/definitions/models.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/pass/id/{id}": {
+            "get": {
+                "description": "Получение информации о абонементе по его уникальному идентификатору",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "pass"
+                ],
+                "summary": "Получение абонемента по ID",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "ID абонемента",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Данные абонемента по заданному ID",
+                        "schema": {
+                            "$ref": "#/definitions/models.Pass"
+                        }
+                    },
+                    "400": {
+                        "description": "Некорректный идентификатор абонемента",
+                        "schema": {
+                            "$ref": "#/definitions/models.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера",
+                        "schema": {
+                            "$ref": "#/definitions/models.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Удаление абонемента по идентификатору.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "pass"
+                ],
+                "summary": "Удаление абонемента",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "ID абонемента",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Успешное удаление абонемента",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Некорректный идентификатор абонемента",
+                        "schema": {
+                            "$ref": "#/definitions/models.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера",
+                        "schema": {
+                            "$ref": "#/definitions/models.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/training": {
             "get": {
                 "description": "Получение списка всех существующих тренировок из базы данных",
@@ -326,6 +491,31 @@ const docTemplate = `{
         }
     },
     "definitions": {
+        "models.CreatePass": {
+            "type": "object",
+            "properties": {
+                "duration": {
+                    "type": "integer",
+                    "example": 6
+                },
+                "id": {
+                    "type": "integer",
+                    "example": 1
+                },
+                "name": {
+                    "type": "string",
+                    "example": "Анна"
+                },
+                "phone": {
+                    "type": "string",
+                    "example": "+79164043522"
+                },
+                "type": {
+                    "type": "string",
+                    "example": "Персональный"
+                }
+            }
+        },
         "models.CreateTraining": {
             "type": "object",
             "properties": {
@@ -344,6 +534,31 @@ const docTemplate = `{
             "properties": {
                 "error": {
                     "type": "string"
+                }
+            }
+        },
+        "models.Pass": {
+            "type": "object",
+            "properties": {
+                "duration": {
+                    "type": "integer",
+                    "example": 6
+                },
+                "id": {
+                    "type": "integer",
+                    "example": 1
+                },
+                "name": {
+                    "type": "string",
+                    "example": "Анна"
+                },
+                "phone": {
+                    "type": "string",
+                    "example": "+79164043522"
+                },
+                "type": {
+                    "type": "string",
+                    "example": "Персональный"
                 }
             }
         },
@@ -373,7 +588,7 @@ const docTemplate = `{
             "properties": {
                 "id": {
                     "type": "integer",
-                    "example": 137
+                    "example": 1
                 },
                 "name": {
                     "type": "string",

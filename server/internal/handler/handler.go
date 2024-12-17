@@ -44,5 +44,10 @@ func (h *Handler) Router() *fiber.App {
 	f.Put("/training/id/:id/confirm", h.ConfirmTraining)
 	f.Put("/training/id/:id/cancel", h.CancelTraining)
 
+	f.Get("/pass", h.PassGetAll)
+	f.Get("/pass/id/:id", h.PassGetByID)
+	f.Post("/pass", h.PassCreate)
+	f.Delete("/pass/id/:id", h.PassDelete)
+
 	return f
 }

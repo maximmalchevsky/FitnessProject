@@ -33,7 +33,7 @@ type CreateTraining struct {
 }
 
 type UpdateTraining struct {
-	ID    int    `json:"id" db:"id" example:"137"`
+	ID    int    `json:"id" db:"id" example:"1"`
 	Name  string `json:"name" db:"name" example:"Павел"`
 	Phone string `json:"phone" db:"phone" example:"+79164041337"`
 }

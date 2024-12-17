@@ -1,5 +1,23 @@
 basePath: /
 definitions:
+  models.CreatePass:
+    properties:
+      duration:
+        example: 6
+        type: integer
+      id:
+        example: 1
+        type: integer
+      name:
+        example: Анна
+        type: string
+      phone:
+        example: "+79164043522"
+        type: string
+      type:
+        example: Персональный
+        type: string
+    type: object
   models.CreateTraining:
     properties:
       name:
@@ -12,6 +30,24 @@ definitions:
   models.ErrorResponse:
     properties:
       error:
+        type: string
+    type: object
+  models.Pass:
+    properties:
+      duration:
+        example: 6
+        type: integer
+      id:
+        example: 1
+        type: integer
+      name:
+        example: Анна
+        type: string
+      phone:
+        example: "+79164043522"
+        type: string
+      type:
+        example: Персональный
         type: string
     type: object
   models.Training:
@@ -32,7 +68,7 @@ definitions:
   models.UpdateTraining:
     properties:
       id:
-        example: 137
+        example: 1
         type: integer
       name:
         example: Павел
@@ -46,6 +82,116 @@ info:
   title: Fitness API
   version: "1.0"
 paths:
+  /pass:
+    get:
+      consumes:
+      - application/json
+      description: Получение списка всех доступных абонементов в системе
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Список всех абонементов
+          schema:
+            items:
+              $ref: '#/definitions/models.Pass'
+            type: array
+        "500":
+          description: Внутренняя ошибка сервера
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: Получение списка всех абонементов
+      tags:
+      - pass
+    post:
+      consumes:
+      - application/json
+      description: Создание нового абонемента с указанием имени, телефона, типа и
+        продолжительности (в месяцах).
+      parameters:
+      - description: Данные абонемента
+        in: body
+        name: pass
+        required: true
+        schema:
+          $ref: '#/definitions/models.CreatePass'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Успешное создание абонемента
+          schema:
+            $ref: '#/definitions/models.Pass'
+        "400":
+          description: Некорректный запрос
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+        "500":
+          description: Внутренняя ошибка сервера
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: Создание нового абонемента
+      tags:
+      - pass
+  /pass/id/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Удаление абонемента по идентификатору.
+      parameters:
+      - description: ID абонемента
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Успешное удаление абонемента
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Некорректный идентификатор абонемента
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+        "500":
+          description: Внутренняя ошибка сервера
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: Удаление абонемента
+      tags:
+      - pass
+    get:
+      consumes:
+      - application/json
+      description: Получение информации о абонементе по его уникальному идентификатору
+      parameters:
+      - description: ID абонемента
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Данные абонемента по заданному ID
+          schema:
+            $ref: '#/definitions/models.Pass'
+        "400":
+          description: Некорректный идентификатор абонемента
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+        "500":
+          description: Внутренняя ошибка сервера
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: Получение абонемента по ID
+      tags:
+      - pass
   /training:
     get:
       consumes:
