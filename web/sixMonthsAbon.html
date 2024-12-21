@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Абонементы - IRON club</title>
-    <link rel="stylesheet" href="IronClubAbonements.css">
+    <title>Оформление абонемента - 6 месяцев</title>
+    <link rel="stylesheet" href="sixMonthsAbon.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Меню -->
     <header>
         <nav>
         <a href="#" class="logo">IRON club</a>
@@ -17,38 +18,29 @@
         </nav>
         <div class="phone">+7 (977) 358-86-52</div>
     </header>
-    <section class="abonements-section">
-        <h1>Приобретите клубную карту</h1>
-        <p>Мы предлагаем гибкую систему абонементов:</p>
-        <div class="abonements-container">
-            <div class="abonement-card">
-                <h2>6 месяцев</h2>
-                <p class="price">9 800 &#8381;</p>
-                <ul class="options">
-                    <li>Круглосуточный доступ</li>
-                    <li>Фитнес бар</li>
-                    <li>Бассейн</li>
-                </ul>
-                <button onclick="window.location.href='sixMonthsAbon.html';">Оформить</button>
-            </div>
-            <div class="abonement-card">
-                <h2>12 месяцев</h2>
-                <p class="price">17 200 &#8381;</p>
-                <ul class="options">
-                    <li>Круглосуточный доступ</li>
-                    <li>Фитнес бар</li>
-                    <li>Бассейн</li>
-                    <li>Заморозка абонемента</li>
-                    <li>SPA центр</li>
-                </ul>
-                <button onclick="window.location.href='yearAbon.html';" >Оформить</button>
-            </div>
-            <div class="abonement-card">
-                <h2>Корпоративная карта</h2>
-                <p class="price">По запросу</p>
-                <p class="options-desc">Все преимущества нашего клубного членства с персональным тренером</p>
-                <button onclick="window.location.href=' corporatAbon.html';">Оформить</button>
-            </div>
+
+    <!-- Секция оформления -->
+    <section class="abonement-section">
+        <div class="abonement-details">
+            <h1>Тариф <span>6 месяцев</span></h1>
+            <p>Стоимость <strong>9 800 &#8381;</strong></p>
+            <p><strong>Включено в абонемент:</strong></p>
+            <ul>
+                <li>Тренажерный зал</li>
+                <li>Групповые тренировки</li>
+                <li>Бесплатные тренировки в мини-группе с тренером</li>
+                <li>Регулярный анализ состава тела InBody</li>
+                <li>Персональная тренировка с тренером</li>
+                <li>SPA-зона с сауной и хаммамом</li>
+            </ul>
+        </div>
+        <div class="abonement-form">
+            <form action="#" method="POST">
+                <h2>Заполните форму</h2>
+                <input type="text" name="name" placeholder="Имя" required>
+                <input type="tel" name="phone" placeholder="Телефон" required>
+                <button type="submit">Купить</button>
+            </form>
         </div>
     </section>
     <footer class="footer">
