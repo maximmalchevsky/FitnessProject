@@ -1,8 +1,11 @@
+// Добавляем обработчик события на кнопку
+document.getElementById('createTraining').addEventListener('click', sendTrainingData);
+
 // Функция для отправки данных на сервер
 function sendTrainingData() {
     // Получаем значения из полей ввода
-    const phone = document.getElementById('phoneInput').value.trim();
-    const name = document.getElementById('nameInput').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const name = document.getElementById('name').value.trim();
 
     // Проверяем, что оба поля заполнены
     if (!phone || !name) {
@@ -43,5 +46,3 @@ function sendTrainingData() {
         });
 }
 
-// Добавляем обработчик события на кнопку
-document.getElementById('createTraining').addEventListener('click', sendTrainingData);
