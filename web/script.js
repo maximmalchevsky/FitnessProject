@@ -4,8 +4,8 @@ document.getElementById('createTraining').addEventListener('click', sendTraining
 // Функция для отправки данных на сервер
 function sendTrainingData() {
     // Получаем значения из полей ввода
-    const phone = document.getElementById('phone').value.trim();
-    const name = document.getElementById('name').value.trim();
+    const phone = document.getElementById('phoneInput').value.trim();
+    const name = document.getElementById('nameInput').value.trim();
 
     // Проверяем, что оба поля заполнены
     if (!phone || !name) {
